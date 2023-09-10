@@ -108,7 +108,8 @@ class DataStorage:
     def retrieve_data(self, keyword):
         # Retrieve the scraped data from the Firestore database based on a keyword
         data = []
-        docs = self.db.collection('scraped_data').where('keyword', '==', keyword).get()
+        docs = self.db.collection('scraped_data').where(
+            'keyword', '==', keyword).get()
 
         for doc in docs:
             data.append(doc.to_dict())
@@ -168,7 +169,8 @@ class ContentFilter:
 
     def sort_content(self, content):
         # Sort and prioritize scraped data based on relevance to user-defined keywords or key phrases
-        sorted_content = sorted(content, key=lambda x: self.keyword in x, reverse=True)
+        sorted_content = sorted(
+            content, key=lambda x: self.keyword in x, reverse=True)
 
         return sorted_content
 
